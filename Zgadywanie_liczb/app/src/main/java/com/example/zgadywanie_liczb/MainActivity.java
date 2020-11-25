@@ -10,26 +10,26 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-
-    int value1;
-    int value2;
-    int value3;
-    int range;
-    Counter counter = new Counter();
-    TextView currentScore;
-    TextView highScore;
-    TextView currentHighScore;
-    TextView Answer;
-    EditText Attempt;
+    //deklaracja zmiennych różnego typu
+    int value1; //zmienna tymczasowa na wylosowany początek przedziału
+    int value2; //zmienna tymczasowa na wylosowany koniec przedziału
+    int value3; //zmienna tymczasowa na wylosowaną wartość szukaną
+    int range;  //wyliczony zakres przedziału wartości szukanej
+    Counter counter = new Counter(); //obiekt obsługujący liczniki gry
+    TextView currentScore; //aktualny wynik w próbach
+    TextView highScore; //najlepszy wynik
+    TextView currentHighScore; //aktualny wynik w formacie najlepszego wyniku liczonego jako 1/liczba prób * range *10000
+    TextView Answer; //pole kompatybilne z formatką
+    EditText Attempt; //pole kompatybilne z formatką
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {                        //uchwyt do zdarzenia odpalający się przy tworzeniu instancji aplikacji
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setNewNumbers();
-        highScore = findViewById(R.id.highScore);
-        highScore.setText("" + 0);
+        setNewNumbers();                                                        //odwołanie do metody setNewNumbers zdefiniowanej niżej
+        highScore = findViewById(R.id.highScore);                               //odwołanie się do kontrolki TextView po jej ID
+        highScore.setText("" + 0);                                              //wartość domyślna
         currentScore = findViewById(R.id.currentScore);
         currentScore.setText("" + 0);
         currentHighScore = findViewById(R.id.currentHighScore);
@@ -38,19 +38,19 @@ public class MainActivity extends AppCompatActivity {
         Attempt = findViewById(R.id.Attempt);
     }
 
-    public void onSubmitClick(View view) {
-        int userAnswer = 100;
-        try {
+    public void onSubmitClick(View view) { //event handler po kliknięciu kontrolki przycisku Submit
+        int userAnswer = 100; //inicjalizacja wartością spoza zakresu przeszukiwań
+        try { //obsługa braku wartości na wejściu; walidacja wejścia
             userAnswer = Integer.parseInt(Attempt.getText().toString());
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
 
-        currentScore.setText("" + counter.addAndReturnCurrentScore());
-        currentHighScore.setText("" + counter.getCurrentHighScore(range));
+        currentScore.setText("" + counter.addAndReturnCurrentScore()); //wyświetlenie obecnego wyniku w ilości prób
+        currentHighScore.setText("" + counter.getCurrentHighScore(range)); //wyświetlenie obecnego wyniku w formacie highScore
 
 
-        if (userAnswer == value3) {
+        if (userAnswer == value3) { //walidacja poprawności odpowiedzi gracza
             Answer.setText("Gratulacje! Odpowiedzią było: " + value3);
             highScore.setText("" + (int) counter.calculateHighScore(counter.getCurrentScore(), range));
             setNewNumbers();
@@ -65,11 +65,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onExitClick(View view) {
+    public void onExitClick(View view) { //ręczne wyjście z aplikacji
         finish();
     }
 
-    public void setNewNumbers() {
+    public void setNewNumbers() { //inicjalizacja liczników oraz wartości liczbowych wykorzystywanych w grze
         Random r = new Random();
         value1 = r.nextInt(10); //min
         value3 = value1 + r.nextInt(10); //cel
