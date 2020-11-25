@@ -14,16 +14,17 @@ public class MainActivity extends AppCompatActivity {
     int value1;
     int value2;
     int value3;
+    int range;
     Counter counter = new Counter();
     TextView currentScore;
-
+    TextView highScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setNewNumbers();
-        TextView highScore = findViewById(R.id.highScore);
+        highScore = findViewById(R.id.highScore);
         highScore.setText(""+ counter.getHighScore());
         currentScore = findViewById(R.id.currentScore);
         currentScore.setText(""+ 0);
@@ -35,8 +36,11 @@ public class MainActivity extends AppCompatActivity {
         int userAnswer = Integer.parseInt(Attempt.getText().toString());
         currentScore.setText(""+ counter.addAndReturnCurrentScore());
 
+
         if(userAnswer == value3) {
             Answer.setText("Gratulacje! Odpowiedzią było: " +value3);
+            highScore.setText(""+ counter.calculateHighScore(counter.getCurrentScore(), range));
+            counter.calculateHighScore(counter.getCurrentScore(), range);
             setNewNumbers();
 
         } else if(userAnswer > value3) {
@@ -59,12 +63,13 @@ public class MainActivity extends AppCompatActivity {
         value3 = r.nextInt(10);
         value1 = r.nextInt(value3 - value1) + value1;
         value2 = value3 + r.nextInt(10);
+        range = value3 - value1;
         TextView Number1 = findViewById(R.id.Number1);
         Number1.setText(""+value1);
         TextView Number2 = findViewById(R.id.Number2);
         Number2.setText(""+value2);
         TextView Number3 = findViewById(R.id.Number3);
-        //Number3.setText(""+value3);
+        Number3.setText(""+value3);
         EditText Attempt = findViewById(R.id.Attempt);
         Attempt.setText("");
 

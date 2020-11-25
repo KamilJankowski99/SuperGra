@@ -26,9 +26,14 @@ public void  setHighScore(int newScore){
         this.currentScore = 0;
     }
 
-    public int calculateHighScore(int score, int range){
-        int result;
-        result = (int)((score / range) * 10000);
+    public double calculateHighScore(int score, int range){
+        double result;
+        result = (score / range) * 10000;
         return result;
     }
+
+    public int getCurrentScore(){
+        return this.currentScore;
+    }
+
     }
