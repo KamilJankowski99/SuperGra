@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     int value2;
     int value3;
     Counter counter = new Counter();
+    TextView currentScore;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +25,20 @@ public class MainActivity extends AppCompatActivity {
         setNewNumbers();
         TextView highScore = findViewById(R.id.highScore);
         highScore.setText(""+ counter.getHighScore());
+        currentScore = findViewById(R.id.currentScore);
+        currentScore.setText(""+ 0);
     }
 
     public void onSubmitClick (View view){
         TextView Answer = findViewById(R.id.Answer);
         EditText Attempt = findViewById(R.id.Attempt);
         int userAnswer = Integer.parseInt(Attempt.getText().toString());
+        currentScore.setText(""+ counter.addAndReturnCurrentScore());
 
         if(userAnswer == value3) {
             Answer.setText("Gratulacje! Odpowiedzią było: " +value3);
             setNewNumbers();
+
         } else if(userAnswer > value3) {
             Answer.setText("Liczba jest mniejsza od podanej odpowiedzi");
         }

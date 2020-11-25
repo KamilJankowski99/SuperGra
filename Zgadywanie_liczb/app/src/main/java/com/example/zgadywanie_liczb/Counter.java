@@ -6,6 +6,7 @@ public class Counter{
 
     public Counter() {
         highScore = 0;
+        currentScore = 0;
     }
 
     public int getHighScore() {
@@ -14,6 +15,20 @@ public class Counter{
 
 public void  setHighScore(int newScore){
         this.highScore = newScore;
-}
 
+}
+    public int addAndReturnCurrentScore(){
+        this.currentScore++;
+        return this.currentScore;
+    }
+
+    public void resetCurrentScore(){
+        this.currentScore = 0;
+    }
+
+    public int calculateHighScore(int score, int range){
+        int result;
+        result = (int)((score / range) * 10000);
+        return result;
+    }
     }
