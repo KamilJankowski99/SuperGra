@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     TextView currentScore;
     TextView highScore;
     TextView currentHighScore;
+    TextView Answer;
+    EditText Attempt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,43 +29,47 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setNewNumbers();
         highScore = findViewById(R.id.highScore);
-        highScore.setText(""+ 0);
+        highScore.setText("" + 0);
         currentScore = findViewById(R.id.currentScore);
-        currentScore.setText(""+ 0);
+        currentScore.setText("" + 0);
         currentHighScore = findViewById(R.id.currentHighScore);
-        highScore.setText(""+ 0);
+        highScore.setText("" + 0);
+        Answer = findViewById(R.id.Answer);
+        Attempt = findViewById(R.id.Attempt);
     }
 
-    public void onSubmitClick (View view){
-        TextView Answer = findViewById(R.id.Answer);
-        EditText Attempt = findViewById(R.id.Attempt);
-        int userAnswer = Integer.parseInt(Attempt.getText().toString());
-        currentScore.setText(""+ counter.addAndReturnCurrentScore());
-        currentHighScore.setText(""+ counter.getCurrentHighScore(range));
+    public void onSubmitClick(View view) {
+        int userAnswer = 100;
+        try {
+            userAnswer = Integer.parseInt(Attempt.getText().toString());
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        currentScore.setText("" + counter.addAndReturnCurrentScore());
+        currentHighScore.setText("" + counter.getCurrentHighScore(range));
 
 
-        if(userAnswer == value3) {
-            Answer.setText("Gratulacje! Odpowiedzią było: " +value3);
-            highScore.setText(""+ (int)counter.calculateHighScore(counter.getCurrentScore(), range));
+        if (userAnswer == value3) {
+            Answer.setText("Gratulacje! Odpowiedzią było: " + value3);
+            highScore.setText("" + (int) counter.calculateHighScore(counter.getCurrentScore(), range));
             setNewNumbers();
-            currentScore.setText(""+ 0);
+            currentScore.setText("" + 0);
 
-        } else if(userAnswer > value3) {
+        } else if (userAnswer > value3) {
             Answer.setText("Liczba jest mniejsza od podanej odpowiedzi");
-        }
-          else if(userAnswer < value3){
-              Answer.setText("Liczba jest większa od podanej odpowiedzi");
-        }
-        else {
+        } else if (userAnswer < value3) {
+            Answer.setText("Liczba jest większa od podanej odpowiedzi");
+        } else {
             Answer.setText("Wrong, the correct answer was: " + value3);
         }
     }
 
-    public void onExitClick(View view){
+    public void onExitClick(View view) {
         finish();
     }
 
-    public void setNewNumbers () {
+    public void setNewNumbers() {
         Random r = new Random();
         value1 = r.nextInt(10); //min
         value3 = value1 + r.nextInt(10); //cel
@@ -70,11 +77,11 @@ public class MainActivity extends AppCompatActivity {
 
         range = value2 - value1;
         TextView Number1 = findViewById(R.id.Number1);
-        Number1.setText(""+value1);
+        Number1.setText("" + value1);
         TextView Number2 = findViewById(R.id.Number2);
-        Number2.setText(""+value2);
+        Number2.setText("" + value2);
         TextView Number3 = findViewById(R.id.Number3);
-        Number3.setText(""+value3);
+        Number3.setText("" + value3);
         EditText Attempt = findViewById(R.id.Attempt);
         Attempt.setText("");
         counter.resetCurrentScore();

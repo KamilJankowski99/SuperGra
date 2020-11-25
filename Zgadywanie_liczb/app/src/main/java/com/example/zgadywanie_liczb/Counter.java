@@ -1,9 +1,9 @@
 package com.example.zgadywanie_liczb;
 
-public class Counter{
-        private int highScore;
-        private int currentScore;
-        private int currentHighScore;
+public class Counter {
+    private int highScore;
+    private int currentScore;
+    private int currentHighScore;
 
     public Counter() {
         highScore = 0;
@@ -14,35 +14,37 @@ public class Counter{
     public int getHighScore() {
 
         return this.highScore;
-        }
+    }
 
-public void  setHighScore(int newScore){
-        if (newScore>getHighScore()) {
+    public void setHighScore(int newScore) {
+        if (newScore > getHighScore()) {
             this.highScore = newScore;
         }
 
-}
-    public int addAndReturnCurrentScore(){
+    }
+
+    public int addAndReturnCurrentScore() {
         this.currentScore++;
         return this.currentScore;
     }
 
-    public void resetCurrentScore(){
+    public void resetCurrentScore() {
         this.currentScore = 0;
     }
 
-    public double calculateHighScore(int score, int range){
+    public double calculateHighScore(int score, int range) {
         double result;
-        result = ((1/(double)score) * (double)range) *10000d;
+        result = ((1 / (double) score) * (double) range) * 10000d;
         return result;
     }
 
-    public int getCurrentScore(){
+    public int getCurrentScore() {
         return this.currentScore;
     }
-    public int getCurrentHighScore(int range){
+
+    public int getCurrentHighScore(int range) {
         this.currentHighScore = (int) this.calculateHighScore(this.getCurrentScore(), range);
         return this.currentHighScore;
     }
 
-    }
+}
