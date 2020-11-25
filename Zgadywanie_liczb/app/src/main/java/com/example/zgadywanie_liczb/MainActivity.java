@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         TextView Number2 = findViewById(R.id.Number2);
         Number2.setText("" + value2);
         TextView Number3 = findViewById(R.id.Number3);
-        Number3.setText("" + value3);
+        //Number3.setText("" + value3); //Ukryta liczba do znalezienia
         EditText Attempt = findViewById(R.id.Attempt);
         Attempt.setText("");
         counter.resetCurrentScore();
