@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Counter counter = new Counter();
     TextView currentScore;
     TextView highScore;
+    TextView currentHighScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +26,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setNewNumbers();
         highScore = findViewById(R.id.highScore);
-        highScore.setText(""+ counter.getHighScore());
+        highScore.setText(""+ 0);
         currentScore = findViewById(R.id.currentScore);
         currentScore.setText(""+ 0);
+        currentHighScore = findViewById(R.id.currentHighScore);
+        highScore.setText(""+ 0);
     }
 
     public void onSubmitClick (View view){
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         EditText Attempt = findViewById(R.id.Attempt);
         int userAnswer = Integer.parseInt(Attempt.getText().toString());
         currentScore.setText(""+ counter.addAndReturnCurrentScore());
+        currentHighScore.setText(""+ counter.getCurrentHighScore(range));
 
 
         if(userAnswer == value3) {

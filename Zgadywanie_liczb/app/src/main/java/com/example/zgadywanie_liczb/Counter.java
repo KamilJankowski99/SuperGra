@@ -3,10 +3,12 @@ package com.example.zgadywanie_liczb;
 public class Counter{
         private int highScore;
         private int currentScore;
+        private int currentHighScore;
 
     public Counter() {
         highScore = 0;
         currentScore = 0;
+        currentHighScore = 0;
     }
 
     public int getHighScore() {
@@ -37,6 +39,10 @@ public void  setHighScore(int newScore){
 
     public int getCurrentScore(){
         return this.currentScore;
+    }
+    public int getCurrentHighScore(int range){
+        this.currentHighScore = (int) this.calculateHighScore(this.getCurrentScore(), range);
+        return this.currentHighScore;
     }
 
     }
