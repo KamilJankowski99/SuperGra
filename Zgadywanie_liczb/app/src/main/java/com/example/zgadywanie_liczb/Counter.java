@@ -10,11 +10,14 @@ public class Counter{
     }
 
     public int getHighScore() {
-            return this.highScore;
+
+        return this.highScore;
         }
 
 public void  setHighScore(int newScore){
-        this.highScore = newScore;
+        if (newScore>getHighScore()) {
+            this.highScore = newScore;
+        }
 
 }
     public int addAndReturnCurrentScore(){
@@ -28,7 +31,7 @@ public void  setHighScore(int newScore){
 
     public double calculateHighScore(int score, int range){
         double result;
-        result = ((double)score / (double)range) * 10000d;
+        result = ((1/(double)score) * (double)range) *10000d;
         return result;
     }
 

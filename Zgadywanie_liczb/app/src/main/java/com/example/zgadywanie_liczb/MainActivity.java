@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             Answer.setText("Gratulacje! Odpowiedzią było: " +value3);
             highScore.setText(""+ (int)counter.calculateHighScore(counter.getCurrentScore(), range));
             setNewNumbers();
+            currentScore.setText(""+ 0);
 
         } else if(userAnswer > value3) {
             Answer.setText("Liczba jest mniejsza od podanej odpowiedzi");
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    private void setNewNumbers () {
+    public void setNewNumbers () {
         Random r = new Random();
         value1 = r.nextInt(10); //min
         value3 = value1 + r.nextInt(10); //cel
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         Number3.setText(""+value3);
         EditText Attempt = findViewById(R.id.Attempt);
         Attempt.setText("");
+        counter.resetCurrentScore();
 
     }
 }
