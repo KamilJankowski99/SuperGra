@@ -28,7 +28,7 @@ public void  setHighScore(int newScore){
 
     public double calculateHighScore(int score, int range){
         double result;
-        result = (score / range) * 10000;
+        result = ((double)score / (double)range) * 10000d;
         return result;
     }
 

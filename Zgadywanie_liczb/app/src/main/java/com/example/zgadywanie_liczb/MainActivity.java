@@ -39,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(userAnswer == value3) {
             Answer.setText("Gratulacje! Odpowiedzią było: " +value3);
-            highScore.setText(""+ counter.calculateHighScore(counter.getCurrentScore(), range));
-            counter.calculateHighScore(counter.getCurrentScore(), range);
+            highScore.setText(""+ (int)counter.calculateHighScore(counter.getCurrentScore(), range));
             setNewNumbers();
 
         } else if(userAnswer > value3) {
@@ -60,10 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setNewNumbers () {
         Random r = new Random();
-        value3 = r.nextInt(10);
-        value1 = r.nextInt(value3 - value1) + value1;
-        value2 = value3 + r.nextInt(10);
-        range = value3 - value1;
+        value1 = r.nextInt(10); //min
+        value3 = value1 + r.nextInt(10); //cel
+        value2 = value3 + r.nextInt(10); //max
+
+        range = value2 - value1;
         TextView Number1 = findViewById(R.id.Number1);
         Number1.setText(""+value1);
         TextView Number2 = findViewById(R.id.Number2);
